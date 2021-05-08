@@ -1,0 +1,35 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <a class="navbar-brand">RaliHandMade</a>
+            <ul class="navbar-nav">
+                <i class=" navbar-brand fas fa-cookie-bite"></i>
+                <li class="nav-item active">
+                    <a class="nav-link" routerLink="/">Начало</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/categories">Категории</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/aboutUs">За нас</a>
+                </li>
+            </ul>
+        </div>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        </form>
+        <span>
+            <fa-icon [icon]="faHeart" class="p-2"></fa-icon>
+            <fa-icon [icon]="faShoppingBag" class="p-2"></fa-icon>
+        </span>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="/login">Вход</a>
+            </li>
+        </ul>
+    </div>
+</nav>
