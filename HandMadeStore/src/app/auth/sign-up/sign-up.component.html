@@ -1,0 +1,66 @@
+<h1 class="text-center p-2" style="color:#7C3A6A;">Регистрация</h1>
+<div class="row justify-content-center m-4">
+    <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-12">
+                <p *ngIf="errorMessage" class="text-danger text-center">{{errorMessage}}</p>
+            </div>
+        </div>
+        <form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="username">Потребителско име</label>
+                <input type="text" class="form-control" id="username" placeholder="Въведи потребителско име"
+                    formControlName="username"  formControlName="username" />
+                <small *ngIf="formGroup.get('username').touched &&
+                    formGroup.get('username').invalid &&
+                    formGroup.get('username').errors.required" class="text-danger">
+                    Това поле е задължително!
+                </small>
+                <small *ngIf="formGroup.get('username').touched &&
+                        formGroup.get('username').invalid &&
+                        formGroup.get('username').errors.minlength"
+                        class="text-danger">
+                        Полето трябва да съдържа най-малко 5 символа.
+            </small>
+            </div>
+            <div class="form-group">
+                <label for="email">Имейл</label>
+                <input type="email" class="form-control" id="email" placeholder="Въведи имейл"
+                    formControlName="email"  formControlName="email" />
+                <small *ngIf="formGroup.get('email').touched &&
+                    formGroup.get('email').invalid &&
+                    formGroup.get('email').errors.required" class="text-danger">
+                    Това поле е задължително!
+            </small>
+            </div>
+            <div class="form-group">
+                <label for="password">Парола</label>
+                <input type="password" class="form-control" id="password" placeholder="Въведи парола"
+                    formControlName="password" />
+
+                <small *ngIf="formGroup.get('password').touched &&
+                    formGroup.get('password').invalid &&
+                    formGroup.get('password').errors.required" class="text-danger">
+                    Това поле е задължително!
+                </small>
+            </div>
+            <div class="form-group">
+                <label for="rePassword">Повтори парола</label>
+                <input type="password" class="form-control" id="rePassword" placeholder="Повтори парола"
+                    formControlName="rePassword" />
+
+                    <small *ngIf="formGroup.get('rePassword').touched &&
+                    formGroup.get('rePassword').invalid &&
+                    formGroup.get('rePassword').errors.required"  class="text-danger">
+                    Това поле е задължително!
+                </small>
+                
+            </div>
+            <div class="form-froup">
+                <a routerLink="/login">Вече имате акаунт?</a>
+                <button type="submit" class="btn text-right m-2"
+                    style="background-color:#C4C4C4; color: black;">Регистрация</button>
+            </div>
+        </form>
+    </div>
+</div>

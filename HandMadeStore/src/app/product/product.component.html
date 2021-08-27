@@ -1,0 +1,21 @@
+<div class="card-deck">
+  <div class="card">
+    <h5 class="card-title text-center">{{product.title}}</h5>
+    <img class="card-img-top" alt="picture" [src]="product.picture">
+    <div>
+      <button type="button" class="btn-outline-primary m-2">Добави в количката</button>
+      <fa-icon [icon]="faHeart" class="p-2"></fa-icon>
+    </div>
+    <div class="card-body">
+      <p class="card-text ">Описание: {{product.description}}</p>
+      <p class="card-text">Количество: {{product.quantity}}</p>
+      <p class="card-text">Цена: {{product.price}}</p>
+      <p class="card-subtitle mb-2 text-muted">Категория: {{product.category}}</p>
+    </div>
+    <div>
+      <a type="button" class="btn-outline-success m-3" [routerLink]="['/products','edit',product.id]">
+        Edit</a>
+      <button type="button" class="btn-outline-danger-2" (click)="productDeleted.emit(product.id)">Delete</button>
+    </div>
+  </div>
+</div>

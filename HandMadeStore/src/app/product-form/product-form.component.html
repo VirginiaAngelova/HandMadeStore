@@ -1,0 +1,105 @@
+<h3>{{ !product.id ? 'Добавяне на продукт' : 'Промяна на продукт'}}</h3>
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()" class="row justify-content-center" method="post"
+    enctype="multipart/form-data">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="title">Име на артикул</label>
+            <input type="text" class="form-control" id="title" formControlName="title" placeholder="Име на артикул">
+
+            <small *ngIf="formGroup.get('title').touched &&
+                    formGroup.get('title').invalid &&
+                    formGroup.get('title').errors.required" class="text-danger">
+                The field is required!
+            </small>
+            <small *ngIf="formGroup.get('title').touched &&
+                    formGroup.get('title').invalid &&
+                    formGroup.get('title').errors.minlength" class="text-warning">
+                The field should contain at least {{ formGroup.get('title').errors.minlength.requiredLength}},
+                Currently they are {{formGroup.get('title').errors.minlength.actualLength}}
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <input type="text" class="form-control" id="description" formControlName="description"
+                placeholder="Описание">
+
+            <small *ngIf="formGroup.get('description').touched &&
+                    formGroup.get('description').invalid &&
+                    formGroup.get('description').errors.required" class="text-danger">
+                The field is required!
+            </small>
+            <small *ngIf="formGroup.get('description').touched &&
+                    formGroup.get('description').invalid &&
+                    formGroup.get('description').errors.minlength" class="text-warning">
+                The field should contain at least {{ formGroup.get('description').errors.minlength.requiredLength}},
+                Currently they are {{formGroup.get('description').errors.minlength.actualLength}}
+            </small>
+
+        </div>
+        <div class="form-group">
+            <label for="picture">Снимка</label>
+            <input type='file' (change)="readUrl($event)" id="picture" >
+
+            <img [src]="picture" width="350px" height="250px">
+
+            <small *ngIf="formGroup.get('picture').touched &&
+             formGroup.get('picture').invalid &&
+              formGroup.get('picture').errors.required" class="text-danger">
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="quantity">Налично количество</label>
+            <input type="number" class="form-control" id="quantity" formControlName="quantity"
+                placeholder="Налично количество">
+
+            <small *ngIf="formGroup.get('quantity').touched &&
+             formGroup.get('quantity').invalid &&
+              formGroup.get('quantity').errors.required" class="text-danger">
+                The field is required!
+            </small>
+            <small *ngIf="formGroup.get('quantity').touched &&
+                    formGroup.get('quantity').invalid &&
+                    formGroup.get('quantity').errors.minlength" class="text-warning">
+                The field should contain at least {{ formGroup.get('quantity').errors.minlength.requiredLength}},
+                Currently they are {{formGroup.get('quantity').errors.minlength.actualLength}}
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="price">Цена</label>
+            <input type="text" class="form-control" id="price" formControlName="price" placeholder="Цена">
+
+            <small *ngIf="formGroup.get('price').touched &&
+             formGroup.get('price').invalid &&
+              formGroup.get('price').errors.required" class="text-danger">
+                The field is required!
+            </small>
+            <small *ngIf="formGroup.get('price').touched &&
+                    formGroup.get('price').invalid &&
+                    formGroup.get('price').errors.minlength" class="text-warning">
+                The field should contain at least {{ formGroup.get('price').errors.minlength.requiredLength}},
+                Currently they are {{formGroup.get('price').errors.minlength.actualLength}}
+            </small>
+        </div>
+        <div class="form-group">
+            <label for="category">Категория</label>
+            <input type="text" class="form-control" id="category" formControlName="category" placeholder="Категория">
+
+            <small *ngIf="formGroup.get('category').touched &&
+                    formGroup.get('category').invalid &&
+                    formGroup.get('category').errors.required" class="text-danger">
+                The field is required!
+            </small>
+            <small *ngIf="formGroup.get('category').touched &&
+             formGroup.get('category').invalid &&
+              formGroup.get('category').errors.minlength">
+                The field should contain at least {{ formGroup.get('category').errors.minlength.requiredLength}},
+                Currently they are {{formGroup.get('category').errors.minlength.actualLength}}
+            </small>
+        </div>
+        <div class="form-group text-right">
+            <button type="submit" class="btn btn-outline-dark">{{ !product.id ? 'Добавяне' : 'Промяна' }}</button>
+            <a routerLink='/products' class="btn btn-default">
+                Отмяна</a>
+        </div>
+    </div>
+</form>

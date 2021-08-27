@@ -7,15 +7,19 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <a class="navbar-brand">RaliHandMade</a>
             <ul class="navbar-nav">
-                <i class=" navbar-brand fas fa-cookie-bite"></i>
+                <span *ngIf="hasLoggedIn">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="products">Продукти</a>
+                    </li>
+                </span>
                 <li class="nav-item active">
                     <a class="nav-link" routerLink="/">Начало</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/categories">Категории</a>
+                    <a class="nav-link" routerLink="categories">Категории</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="/aboutUs">За нас</a>
+                    <a class="nav-link" routerLink="aboutUs">За нас</a>
                 </li>
             </ul>
         </div>
@@ -23,13 +27,17 @@
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         </form>
         <span>
-            <fa-icon [icon]="faHeart" class="p-2"></fa-icon>
+            <fa-icon [icon]="faHeart" class="p-2"  *ngIf="hasLoggedIn"></fa-icon>
             <fa-icon [icon]="faShoppingBag" class="p-2"></fa-icon>
         </span>
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" routerLink="/login">Вход</a>
+            <li class="nav-item" *ngIf="!hasLoggedIn">
+                <a class="nav-link" routerLink="login">Вход</a>
             </li>
+            <li class="nav-item" *ngIf="hasLoggedIn" (click)="onLogOut()">
+                <a class="nav-link">Изход</a>
+            </li>
+
         </ul>
     </div>
 </nav>

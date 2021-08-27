@@ -1,0 +1,109 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "Virdzhinia4",
+      "email": "virginia.ang@abv.bg",
+      "password": "123456",
+      "rePassword": "123456",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "username": "admin123",
+      "email": "admin123@abv.bg",
+      "password": "admin",
+      "rePassword": "admin",
+      "role": "admin"
+    },
+    {
+      "username": "ivan",
+      "email": "ivan@abv.bg",
+      "password": "123456",
+      "rePassword": "123456",
+      "id": 3
+    }
+  ],
+  "product": [
+    {
+      "id": 1,
+      "title": "Великденско пиле",
+      "description": "something",
+      "picture": "../../assets/martenici/54.jpg",
+      "qunatity": 6,
+      "price": "3 лв.",
+      "category": "Великден"
+    },
+    {
+      "id": 2,
+      "title": "Великденско пиле",
+      "description": "something dfjhdfhkfhkgv",
+      "picture": "../../assets/martenici/55.jpg",
+      "qunatity": 10,
+      "price": "5 лв.",
+      "category": "Великден"
+    },
+    {
+      "title": "Великденско пиле",
+      "description": "something dfjhdfhkfhkgv",
+      "picture": "../../assets/martenici/55.jpg",
+      "price": "5 лв.",
+      "quantity": null,
+      "category": "Великден",
+      "id": 3
+    },
+    {
+      "title": "Великденско пиле",
+      "description": "something dfjhdfhkfhkgv",
+      "picture": "../../assets/martenici/55.jpg",
+      "price": "5 лв.",
+      "quantity": 6,
+      "category": "Великден",
+      "id": 4
+    },
+    {
+      "title": "Великденско пиле",
+      "description": "something",
+      "picture": "../../assets/martenici/54.jpg",
+      "price": "3 лв.",
+      "quantity": null,
+      "category": "Великден",
+      "id": 5
+    },
+    {
+      "title": "Великденско пиле",
+      "description": "something",
+      "picture": "../../assets/martenici/54.jpg",
+      "price": "3 лв.",
+      "quantity": null,
+      "category": "Великден",
+      "id": 6
+    },
+    {
+      "title": "Великденско пиле",
+      "description": "something dfjhdfhkfhkgv",
+      "picture": "../../assets/martenici/55.jpg",
+      "price": "5 лв.",
+      "quantity": 6,
+      "category": "Великден",
+      "id": 7
+    },
+    {
+      "title": "Великденско пиле",
+      "description": "something dfjhdfhkfhkgv",
+      "price": "5 лв.",
+      "quantity": null,
+      "category": "Великден",
+      "id": 8
+    },
+    {
+      "title": "someting",
+      "description": "something",
+      "picture": "",
+      "price": "3 лв.",
+      "quantity": 2,
+      "category": "Великден",
+      "id": 9
+    }
+  ]
+}
