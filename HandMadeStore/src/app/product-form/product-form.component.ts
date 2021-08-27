@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, OnChanges, Output } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { EventEmitter} from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { Product } from '../Product.interface';
@@ -13,14 +13,15 @@ import { productService } from '../product.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent implements OnInit{
+export class ProductFormComponent implements OnInit {
 
   @Output() productSubmitted = new EventEmitter<Product>();
   formGroup: FormGroup;
   product: Product;
   destroy$ = new Subject<boolean>();
-  picture:any;
-  selectedImage: any = null;
+  picture: any;
+
+  imageSrc: string;
   isSubmitted: boolean = false;
 
   constructor(
@@ -28,7 +29,7 @@ export class ProductFormComponent implements OnInit{
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private productService: productService
-    
+
   ) {
     this.product = {
       title: '',
@@ -37,10 +38,9 @@ export class ProductFormComponent implements OnInit{
       price: '',
       quantity: 0,
       category: '',
-     
+
     }
   }
-
 
   ngOnInit(): void {
     this.formGroup = this.fb.group({
@@ -52,7 +52,7 @@ export class ProductFormComponent implements OnInit{
       qunatity: this.product.quantity,
       category: this.product.category,
     });
-    
+
     this.productSubmitted.emit(this.formGroup.value);
     this.activatedRoute.params.pipe(
       takeUntil(this.destroy$)
@@ -66,65 +66,55 @@ export class ProductFormComponent implements OnInit{
     this.buildForm();
   }
 
-//  onSelectedFile(event) {
-//     if (event.target.files.length > 0) {
-//       const file = event.target.files[0];
-//       this.formGroup.get('picture').setValue(file);
-//     }
-//   }
-readUrl(event:any) {
-  if (event.target.files && event.target.files[0]) {
-    var reader = new FileReader();
+  readUrl(event: any) {
+    const reader = new FileReader();
+    if (event.target.files && event.target.files.length) {
+      const [file] = event.target.files;
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        this.imageSrc = reader.result as string;
+        this.formGroup.patchValue({
+          picture: reader.result
 
-    reader.onload = (event: ProgressEvent) => {
-      this.picture = (<FileReader>event.target).result;
+        });
+      };
+
     }
-
-    reader.readAsDataURL(event.target.files[0]);
-    this.selectedImage = event.target.files[0];
   }
-  else{
-    this.picture = '';
-    this.selectedImage = null;
-  }
-}
   ngOnDestroy(): void {
     this.destroy$.next(true);
     this.destroy$.unsubscribe();
   }
   onSubmit(): void {
-    const product : Product = {
+    const product: Product = {
       title: this.formGroup.get('title').value,
       description: this.formGroup.get('description').value,
-      picture:this.formGroup.get('picture').value,
-      price:this.formGroup.get('price').value,
-      quantity:this.formGroup.get('quantity').value,
-      category:this.formGroup.get('category').value,
+      picture: this.formGroup.get('picture').value,
+      price: this.formGroup.get('price').value,
+      quantity: this.formGroup.get('quantity').value,
+      category: this.formGroup.get('category').value,
     }
-    const formData = new FormData();
-    formData.append('picture', this.formGroup.get('picture').value);
-    // var  filePath = `${this.formGroup}/${this.selectedImage.name}`
- 
-    console.log(this.formGroup.value); 
+
+    console.log(this.formGroup.value);
     this.productSubmitted.emit(this.formGroup.value);
-    if(!product.id){
-      this.productService.addProduct({...product}).pipe(
+    if (!product.id) {
+      this.productService.addProduct({ ...product }).pipe(
         take(1)
-      ).subscribe(()=>{
+      ).subscribe(() => {
         this.router.navigate(['/products']);
       }, (error) => {
         console.log(error);
       });
       return;
-  }
+    }
 
-  this.productService.updateProduct(this.product).pipe(
-    takeUntil(this.destroy$)
-  ).subscribe( ()=>{
-    this.router.navigate(['/products']);
-  },(error) => {
-    console.log(error);
-  });
+    this.productService.updateProduct(this.product).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe(() => {
+      this.router.navigate(['/products']);
+    }, (error) => {
+      console.log(error);
+    });
   }
   buildForm(): void {
     this.formGroup = this.fb.group({

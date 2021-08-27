@@ -38,9 +38,9 @@
         </div>
         <div class="form-group">
             <label for="picture">Снимка</label>
-            <input type='file' (change)="readUrl($event)" id="picture" >
+            <input type='file' (change)="readUrl($event)" id="picture" class="form-control" />
 
-            <img [src]="picture" width="350px" height="250px">
+            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
 
             <small *ngIf="formGroup.get('picture').touched &&
              formGroup.get('picture').invalid &&
