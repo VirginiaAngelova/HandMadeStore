@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, OnChanges, Output } from '@angular/core';
+import { Component, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
@@ -13,7 +13,7 @@ import { productService } from '../product.service';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent implements OnInit, OnDestroy{
 
   @Output() productSubmitted = new EventEmitter<Product>();
   formGroup: FormGroup;
@@ -87,28 +87,29 @@ export class ProductFormComponent implements OnInit {
   }
   onSubmit(): void {
     const product: Product = {
+      ...this.formGroup.value,
       title: this.formGroup.get('title').value,
       description: this.formGroup.get('description').value,
       picture: this.formGroup.get('picture').value,
       price: this.formGroup.get('price').value,
       quantity: this.formGroup.get('quantity').value,
       category: this.formGroup.get('category').value,
-    }
+    };
 
-    console.log(this.formGroup.value);
-    this.productSubmitted.emit(this.formGroup.value);
     if (!product.id) {
-      this.productService.addProduct({ ...product }).pipe(
+      // create
+      this.productService.addProduct({...product}).pipe(
         take(1)
       ).subscribe(() => {
         this.router.navigate(['/products']);
       }, (error) => {
         console.log(error);
       });
+
       return;
     }
 
-    this.productService.updateProduct(this.product).pipe(
+    this.productService.updateProduct(product).pipe(
       takeUntil(this.destroy$)
     ).subscribe(() => {
       this.router.navigate(['/products']);
@@ -132,6 +133,7 @@ export class ProductFormComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe((response) => {
       this.product = response;
+      
       this.buildForm();
     });
   }

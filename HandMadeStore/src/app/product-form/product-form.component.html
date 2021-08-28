@@ -40,7 +40,8 @@
             <label for="picture">Снимка</label>
             <input type='file' (change)="readUrl($event)" id="picture" class="form-control" />
 
-            <img [src]="imageSrc" *ngIf="imageSrc" style="height: 300px; width:500px">
+            <img [src]="imageSrc" *ngIf="imageSrc"  style="height: 300px; width:350px">
+            <img [src]="product.picture" *ngIf="!imageSrc" style="height: 300px; width:350px">
 
             <small *ngIf="formGroup.get('picture').touched &&
              formGroup.get('picture').invalid &&
