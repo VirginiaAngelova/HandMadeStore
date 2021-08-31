@@ -1,26 +1,15 @@
-<h1 class="text-center p-2" style="color:#7C3A6A;">Категории</h1>
-<div class="container">
-    <div class="row p-2 m-2 text-center">
-        <div class="col-sm-4  p-2">
-            <img src="../../assets/buterfly.jpg" class="rounded float-start " alt="butterfly" routerLink="/productView" />
-        </div>
-        <div class="col-sm-4  p-2">
-            <img src="../../assets/buterfly.jpg" class="rounded mx-auto " alt="cat">
-        </div>
-        <div class="col-sm-4  p-2">
-            <img src="../../assets/buterfly.jpg" class="rounded float-end" alt="flower">
-        </div>
-    </div>
-    <div class="row p-2 m-2 text-center">
-        <div class="col-sm-4 p-2">
-            <img src="../../assets/buterfly.jpg" class="rounded float-start" alt="butterfly">
-        </div>
-        <div class="col-sm-4 p-2">
-            <img src="../../assets/buterfly.jpg" class="rounded mx-auto " alt="cat">
-        </div>
-        <div class="col-sm-4 p-2">
-            <img src="../../assets/buterfly.jpg" class="rounded float-end" alt="flower">
+<div class="row">
+    <div class="col-4" *ngFor="let categ of categories">
+        <div>
+            <div class="card-deck">
+                <div class="card">
+                    <h5 class="card-title text-center">{{categ.categoryName}}</h5>
+                    <div class="card-body">
+                        <img class="card-img-top" alt="picture" [src]="categ.categoryPicture" routerLink="/products/{{categ.id}}"
+                            style="width: 450px; height: 250px;">
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-

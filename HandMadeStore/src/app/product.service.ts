@@ -20,7 +20,11 @@ export class productService {
 
         return this.http.get<Product>(url);
     }
-
+    getProductCategory(category): Observable<Product> {
+        const url = `${this.url}/${category}`;
+        
+        return this.http.get<Product>(url);
+    }
     addProduct(product: Product): Observable<any> {
         return this.http.post(this.url, product);
     }

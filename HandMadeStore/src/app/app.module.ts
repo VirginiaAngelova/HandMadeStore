@@ -20,21 +20,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { NonAuthGuard } from './auth/guards/non-auth.guard';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { ViewProductByCategoryComponent } from './view-product-by-category/view-product-by-category.component';
 
 const routers: Routes = [{
   path: "",
   component: HomeComponent,
-  canActivate: [NonAuthGuard]
 },
 {
   path: "categories",
   component: CategoriesComponent,
-  canActivate: [NonAuthGuard]
 },
 {
   path: "aboutUs",
   component: AboutUsComponent,
-  canActivate: [NonAuthGuard]
+
 },
 {
   path: "login",
@@ -85,11 +85,14 @@ const routers: Routes = [{
     ProductComponent,
     ProductCardViewComponent,
     ProductListComponent,
+    ViewProductByCategoryComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    Ng2SearchPipeModule,
     FontAwesomeModule,
+    FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routers)

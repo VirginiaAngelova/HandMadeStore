@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, Pipe } from '@angular/core';
 import { Product } from "../Product.interface"
-import { productService } from '../product.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-product-card-view',
@@ -16,10 +16,13 @@ export class ProductCardViewComponent implements OnInit {
   
 
   selectedProduct: Product;
+  data: string;
+  public isThisAdmin: boolean;
   
-  constructor(){}
+  constructor(private AuthService: AuthService){}
 
   ngOnInit(): void {
+    this.loggedAdmin();
   }
 
   onProductSelected(product: Product):void{
@@ -30,7 +33,12 @@ export class ProductCardViewComponent implements OnInit {
   this.productSelected.emit({
     ...product
   });
-
+  }
+  loggedAdmin(): void {
+    const user = this.AuthService.getLoggedUser();
+    if (user.role === 'admin') {
+      this.isThisAdmin = true;
+    }
   }
 
 }

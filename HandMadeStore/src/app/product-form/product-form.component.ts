@@ -63,6 +63,17 @@ export class ProductFormComponent implements OnInit, OnDestroy{
         this.getProduct(id)
       }
     })
+
+    this.activatedRoute.params.pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((params) => {
+      const category = params.category;
+
+      if (category) {
+        this.getProductCategory(category)
+      }
+    });
+
     this.buildForm();
   }
 
@@ -133,8 +144,18 @@ export class ProductFormComponent implements OnInit, OnDestroy{
       takeUntil(this.destroy$)
     ).subscribe((response) => {
       this.product = response;
+
+      this.buildForm();
+    });
+  }
+  private getProductCategory(category: string): void {
+    this.productService.getProductCategory(category).pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((response) => {
+      this.product = response;
       
       this.buildForm();
     });
   }
+  
 }
