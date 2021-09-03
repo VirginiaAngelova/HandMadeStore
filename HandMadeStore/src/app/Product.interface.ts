@@ -5,6 +5,6 @@ export interface Product
     description: string;
     picture: string;
     quantity: number,
-    price: string;
+    price: number;
     category: string;
   }

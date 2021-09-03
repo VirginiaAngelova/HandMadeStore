@@ -17,6 +17,7 @@ export class ProductListComponent implements OnInit {
   selectedProduct: Product;
   destroy$ = new Subject<boolean>();
   user: User
+  isLoadingVisible: boolean = true;
 
   constructor(private productService: productService) {
     this.selectedProduct = {
@@ -24,7 +25,7 @@ export class ProductListComponent implements OnInit {
       description: '',
       picture: '',
       quantity: 0,
-      price: '',
+      price: 0,
       category: '',
     };
   }
@@ -41,6 +42,7 @@ export class ProductListComponent implements OnInit {
       takeUntil(this.destroy$)
     ).subscribe((response: Product[]) => {
       this.product = response;
+      this.isLoadingVisible = false;
       console.log(response);
     }, (error) => {
       console.log(error);

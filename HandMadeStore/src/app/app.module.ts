@@ -21,7 +21,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './auth/guards/auth.guard';
 import { NonAuthGuard } from './auth/guards/non-auth.guard';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
-import { ViewProductByCategoryComponent } from './view-product-by-category/view-product-by-category.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 
 const routers: Routes = [{
   path: "",
@@ -68,6 +68,9 @@ const routers: Routes = [{
   path: 'products/edit/:id',
   component: ProductFormComponent,
   canActivate: [AuthGuard]
+},
+{path:'cart',
+ component: ShoppingCartComponent
 }
 ];
 
@@ -85,7 +88,8 @@ const routers: Routes = [{
     ProductComponent,
     ProductCardViewComponent,
     ProductListComponent,
-    ViewProductByCategoryComponent,
+    ShoppingCartComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,

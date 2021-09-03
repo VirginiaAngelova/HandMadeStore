@@ -8,6 +8,7 @@ import { Product } from "../Product.interface";
 import { productService } from '../product.service';
 import { ActivatedRoute } from '@angular/router';
 import { categories } from '../categories.interface';
+import { ShoppingCartService } from '../shopping.cart.service';
 
 @Component({
   selector: 'app-product',
@@ -18,10 +19,10 @@ export class ProductComponent implements OnInit {
 
   formGroup: FormGroup;
   @Input() product: Product;
-
+  isLoadingVisible: string;
+  
   faHeart = faHeart;
   user: User
-  id: number;
   searchCategory: categories;
   public isThisAdmin = false;
 
@@ -32,14 +33,15 @@ export class ProductComponent implements OnInit {
     private productService: productService,
     private authService: AuthService,
     private fb: FormBuilder,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private cartService : ShoppingCartService
   ) {
     this.product = {
       title: '',
       description: '',
       picture: '',
       quantity: 0,
-      price: '',
+      price: 0,
       category: '',
     }
   }
@@ -59,6 +61,9 @@ export class ProductComponent implements OnInit {
     if (user.role === 'admin') {
       this.isThisAdmin = true;
     }
+  }
+  onAddCart(product: any){
+    this.cartService.addtoCart(product);
   }
   
 }

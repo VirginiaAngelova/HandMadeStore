@@ -1,47 +1,49 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { categories } from '../categories.interface';
 import { categoriesService } from '../categories.service';
 import { Product } from '../Product.interface';
-import { productService } from '../product.service';
-import { Router, Params, ActivatedRoute} from '@angular/router';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 @Component({
   selector: 'app-categories',
   templateUrl: './categories.component.html',
   styleUrls: ['./categories.component.css']
 })
-export class CategoriesComponent implements OnInit {
+export class CategoriesComponent implements OnInit, OnDestroy {
 
-  // category: categories
-  products: Product[] = [];
-  categories: categories;
-  filteredProducts: Product[] = [];
-  categories$: Observable<any>;
-  category: string;
-  products$: Observable<any>;
+  @Input() categories: categories[];
+  selectedCategory: categories;
+  destroy$ = new Subject<boolean>();
 
-  result: any;
-
-  constructor(
-    private categoriesService: categoriesService,
-    private productService: productService,
-    private fb: FormBuilder,
-    private route: ActivatedRoute,
-  ) {
-   
+  constructor(private categoriesService: categoriesService) { 
+    this.selectedCategory = {
+      categoryName: '',
+      categoryPicture: ''
+    };
   }
 
   ngOnInit(): void {
-    this.getProductCategory();
-
+    this.getCategories();
   }
-  getProductCategory(): void {
-    this.productService.getProduct().subscribe((res) => {
-      this.result = res;
-    })
+  ngOnDestroy(): void {
+    this.destroy$.next(true);
+    this.destroy$.unsubscribe();
   }
 
+  private getCategories(): void {
+    this.categoriesService.getCategory().pipe(
+      takeUntil(this.destroy$)
+    ).subscribe((response: categories[]) => {
+      this.categories = response;
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    });
+  }
+  onCategorySelect(category: categories): void {
+    this.selectedCategory = category;
+  }
 
 }

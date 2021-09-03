@@ -36,4 +36,5 @@ export class productService {
         const url = `${this.url}/${id}`;
         return this.http.delete(url);
     }
+    
 }

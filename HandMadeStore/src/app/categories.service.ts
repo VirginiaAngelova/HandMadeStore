@@ -15,10 +15,10 @@ export class categoriesService {
     getCategory(): Observable<categories[]> {
         return this.http.get<categories[]>(this.url);
     }
-    getProductId(id: number): Observable<categories> {
+    getCategoryId(id: number): Observable<categories> {
         const url = `${this.url}/${id}`;
 
         return this.http.get<categories>(url);
     }
-
+    
 }

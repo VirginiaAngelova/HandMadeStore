@@ -35,7 +35,7 @@ export class ProductFormComponent implements OnInit, OnDestroy{
       title: '',
       description: '',
       picture: '',
-      price: '',
+      price: 0,
       quantity: 0,
       category: '',
 

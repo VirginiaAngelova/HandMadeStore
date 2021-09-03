@@ -1,3 +1,4 @@
 <h1 class="text-center">Продукти</h1>
+<h3 *ngIf="isLoadingVisible" class="text-center">Loading...</h3>
 <app-product-card-view [product]="product" (productSelected)="onProductSelect($event)" (productDeleted)="onProductDelete($event)">
 </app-product-card-view>
