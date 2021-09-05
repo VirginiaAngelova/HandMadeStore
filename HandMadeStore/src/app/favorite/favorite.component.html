@@ -1,0 +1,52 @@
+<ng-container *ngIf="products.length != 0">
+    <div class="container">
+        <div class="table-responsive-sm table-responsive-sm table-responsive-lg">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Номер:</th>
+                            <th>Продукт</th>
+                            <th>Снимка на продукта</th>
+                            <th>Описание</th>
+                            <th>Количество</th>
+                            <th>Цена</th>
+                            <th>Опции</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of products; let i = index">
+                            <td>{{i+1}}</td>
+                            <td>{{product.title}}</td>
+                            <td><img style="width: 120px;" src="{{product.picture}}" alt="product picture"></td>
+                            <td style="width: 25%;">{{product.description}}</td>
+                            <td style="width: 12%;">1 бр.</td>
+                            <th style="width: 12%;">{{product.price}}лв.</th>
+        
+                            <td>
+                                <fa-icon [icon]="faTrash" (click)=" removeFromFavorite(product)"class="m-2"></fa-icon>
+                                <fa-icon [icon]="faShoppingBag" (click)="onAddCartFromFavorite(product)"></fa-icon>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"></td>
+                            <td><button (click)="clearFavorite()" class="btn btn-danger">Премахване на всички продукти.</button></td>
+                            <td><button routerLink="/products" class="btn btn-primary">Добави още продукти в любими</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+</ng-container>
+
+<ng-container *ngIf="products.length == 0">
+    <div class="container">
+        <div class="card">
+            <h5 class="card-title">Любими продукти</h5>
+        </div>
+        <div class="center">
+            <img src="../../assets/favorite.PNG" alt="favorite product picture">
+            <h4>Няма любими продукти!</h4>
+            <button routerLink="/products" class="btn btn-primary">Добави любими продукти</button>
+        </div>
+    </div>
+</ng-container>

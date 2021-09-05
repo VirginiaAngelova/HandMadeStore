@@ -1,4 +1,9 @@
 <h1 class="text-center">Продукти</h1>
 <h3 *ngIf="isLoadingVisible" class="text-center">Loading...</h3>
+<h3  class="text-center" *ngIf="product.length === 0" >Няма налични продукти</h3>
+<div class="card-top container-fluid">
+
 <app-product-card-view [product]="product" (productSelected)="onProductSelect($event)" (productDeleted)="onProductDelete($event)">
+ 
 </app-product-card-view>
+

@@ -31,8 +31,8 @@
                             <td colspan="4"></td>
                             <td><button (click)="emptycart()" class="btn btn-danger">Изпразни количката</button></td>
                             <td><button routerLink="/products" class="btn btn-primary">Добави още продукти</button></td>
-                            <td><button class="btn btn-success">Завърши поупката</button></td>
-                            <td><strong>Всичко общо: {{ totalPrice }}</strong></td>
+                            <td><button class="btn btn-success" routerLink="/shippingForm">Продължи покупката</button></td>
+                            <td><strong >Всичко общо: {{ totalPrice }}</strong></td>
                         </tr>
                     </tbody>
                 </table>

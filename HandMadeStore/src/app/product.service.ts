@@ -12,9 +12,14 @@ export class productService {
 
     constructor(private http: HttpClient) { }
 
+    getAll(params: any): Observable<any> {
+        return this.http.get<any>(this.url, { params });
+    }
+    
     getProduct(): Observable<Product[]> {
         return this.http.get<Product[]>(this.url);
     }
+   
     getProductId(id: number): Observable<Product> {
         const url = `${this.url}/${id}`;
 
@@ -22,7 +27,7 @@ export class productService {
     }
     getProductCategory(category): Observable<Product> {
         const url = `${this.url}/${category}`;
-        
+
         return this.http.get<Product>(url);
     }
     addProduct(product: Product): Observable<any> {
@@ -36,5 +41,5 @@ export class productService {
         const url = `${this.url}/${id}`;
         return this.http.delete(url);
     }
-    
+
 }

@@ -49,7 +49,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.loggedAdmin();
 
-    // this.activatedRoute.queryParamMap.subscribe(data =>{
+    // this.activatedRoute.params.subscribe(data =>{
     //   this.searchCategory = data.id;
 
     //   this.productService.getProductCategory(this.searchCategory).subscribe(categoryData => this.product = categoryData);
@@ -64,6 +64,9 @@ export class ProductComponent implements OnInit {
   }
   onAddCart(product: any){
     this.cartService.addtoCart(product);
+  }
+  onAddAsFavorite(product: any){
+    this.cartService.addtoFavorite(product);
   }
   
 }

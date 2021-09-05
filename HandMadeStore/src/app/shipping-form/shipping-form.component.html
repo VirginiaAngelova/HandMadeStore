@@ -1,0 +1,37 @@
+<h3 class="text-center" >Попълнете данни за доставка</h3>
+<form class="row justify-content-center" method="post"
+    enctype="multipart/form-data">
+    <div class="col-md-4">
+        <div class="form-group">
+            <label for="title">Име:</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Име">
+        </div>
+        <div class="form-group">
+            <label for="description">Фамилия:</label>
+            <input type="text" class="form-control" id="familyName" formControlName="familyName"
+                placeholder="Фамилия">
+        </div>
+        <div class="form-group">
+            <label for="description">Телефон:</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone"
+                placeholder="Телефон">
+        </div>
+        <div class="form-group">
+            <label for="description">Адрес на доставка</label>
+            <input type="text" class="form-control" id="address" formControlName="address"
+                placeholder="Адрес">
+                <p>
+                    Доставка до офис на Еконт или доставка до адрес
+                </p>
+        </div>
+        <div class="form-group">
+            <label for="description">Допълнителна информация</label>
+            <input type="text" class="form-control" id="message" formControlName="message"
+                placeholder="Допълнителна информация.">
+        </div>
+        <div class="col-sm-12 m-2">
+            <button class="btn btn-success col-sm-5 ml-2 mr-4">Преглед на поръчката</button>
+            <button routerLink='/cart' class="btn btn-default col-sm-5">Отмяна</button>
+        </div>
+        </div>
+</form>

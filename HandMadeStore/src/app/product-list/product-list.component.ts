@@ -19,6 +19,18 @@ export class ProductListComponent implements OnInit {
   user: User
   isLoadingVisible: boolean = true;
 
+
+  
+  products: Product[] = [];
+  currentProduct?: Product;
+  currentIndex = -1;
+  title = '';
+
+  page = 1;
+  count = 0;
+  pageSize = 4;
+  pageSizes = [4, 8, 10];
+
   constructor(private productService: productService) {
     this.selectedProduct = {
       title: '',
@@ -60,4 +72,5 @@ export class ProductListComponent implements OnInit {
       console.log(error);
     });
   }
+  
 }

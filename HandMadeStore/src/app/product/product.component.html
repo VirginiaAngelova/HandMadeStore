@@ -4,7 +4,7 @@
     <img class="card-img-top" alt="picture" [src]="product.picture">
     <div  *ngIf="!isThisAdmin">
       <button type="button" class="btn-outline-primary m-2"  (click)="onAddCart(product)">Добави в количката</button>
-      <fa-icon [icon]="faHeart" class="p-2"></fa-icon>
+      <fa-icon [icon]="faHeart" class="p-2" (click)="onAddAsFavorite(product)"></fa-icon>
     </div>
     <div class="card-body">
       <p class="card-text ">Описание: {{product.description}}</p>
@@ -19,3 +19,4 @@
     </div>
   </div>
 </div>
+

@@ -7,9 +7,23 @@
     </div>
 </div>
 <div class="row m-2">
-    <div class="col-md-3" *ngFor="let product of product | filter:data">
+    <div class="col-md-3" *ngFor="let product of (product | filter:data) | paginate : {
+        itemsPerPage: pageSize,
+        currentPage: page,
+        totalItems: count
+      };
+let i = index">
         <app-product [product]="product" (productSelected)="onProductSelected($event)"
             (productDeleted)="productDeleted.emit($event)">
         </app-product>
     </div>
 </div>
+
+<div class="col-md-12 text-center m-3">
+    <pagination-controls
+      previousLabel="Назад"
+      nextLabel="Напред"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>

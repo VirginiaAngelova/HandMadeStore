@@ -22,6 +22,10 @@ import { AuthGuard } from './auth/guards/auth.guard';
 import { NonAuthGuard } from './auth/guards/non-auth.guard';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { ShippingFormComponent } from './shipping-form/shipping-form.component';
+import { ViewProductByCategoryComponent } from './view-product-by-category/view-product-by-category.component';
+import { FavoriteComponent } from './favorite/favorite.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 const routers: Routes = [{
   path: "",
@@ -30,6 +34,11 @@ const routers: Routes = [{
 {
   path: "categories",
   component: CategoriesComponent,
+},
+{
+  path: 'categories/:id',
+  component: ViewProductByCategoryComponent,
+  canActivate: [AuthGuard]
 },
 {
   path: "aboutUs",
@@ -71,6 +80,13 @@ const routers: Routes = [{
 },
 {path:'cart',
  component: ShoppingCartComponent
+},
+{path:'favorite',
+ component: FavoriteComponent
+},
+{
+  path:'shippingForm',
+  component:ShippingFormComponent,
 }
 ];
 
@@ -89,13 +105,16 @@ const routers: Routes = [{
     ProductCardViewComponent,
     ProductListComponent,
     ShoppingCartComponent,
-    ShoppingCartComponent
+    ShoppingCartComponent,
+    ShippingFormComponent,
+    FavoriteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     Ng2SearchPipeModule,
     FontAwesomeModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,

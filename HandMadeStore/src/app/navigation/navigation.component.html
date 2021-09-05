@@ -23,7 +23,10 @@
             </ul>
         </div>
         <span>
-            <fa-icon [icon]="faHeart" *ngIf="hasLoggedIn" class="pr-2 pl-2"></fa-icon>
+            <span routerLink="favorite" class="btn pl-2 pr-2" *ngIf="hasLoggedIn">
+                <fa-icon [icon]="faHeart"></fa-icon>
+                <div style="font-size: 10px;" class="badge bg-danger">{{totalItemFavorite}}</div>
+            </span>
             <span routerLink="cart" class="btn pl-2 pr-2">
                 <fa-icon [icon]="faShoppingBag"></fa-icon>
                 <div style="font-size: 10px;" class="badge bg-danger">{{totalItem}}</div>

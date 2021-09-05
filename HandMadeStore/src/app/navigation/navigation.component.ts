@@ -18,6 +18,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
   hasLoggedIn: boolean;
   destroy$ = new Subject<boolean>();
   public totalItem : number = 0;
+  public totalItemFavorite: number = 0;
 
   constructor(private authService: AuthService,
     private router: Router,
